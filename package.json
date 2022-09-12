@@ -1,0 +1,18 @@
+{
+  "name": "com.ineor.logger",
+  "version": "1.0.0",
+  "displayName": "Ineor Log System",
+  "description": "Provides a intuitive and feature rich system for game logs.",
+  "unity": "2019.1",
+  "dependencies": {
+  },
+ "keywords": [
+    "logs",
+    "logging",
+    "debbuging"
+  ],
+  "author": {
+    "name": "Mihael Golob",
+    "email": "golob.mihael@gmail.com"
+  }
+}
