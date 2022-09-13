@@ -1,6 +1,5 @@
 using System;
 using Serilog;
-using Serilog.Sinks.File;
 using Serilog.Sinks.Unity3D;
 
 public class Log {
@@ -20,7 +19,7 @@ public class Log {
             loggerConfiguration.WriteTo.Unity3D();
         }
         if (logToFile) {
-            loggerConfiguration.WriteTo.File($"Log_{DateTime.Now:yyyy-MM-dd_HH-mm-ss}.txt");
+            loggerConfiguration.WriteTo.File($"Log_{DateTime.Now.ToString("dd.MM.yyyy_HH-mm-ss")}.txt");
         }
         
         // create logger
@@ -28,6 +27,7 @@ public class Log {
     }
     
     // Debug methods
+    [System.Diagnostics.Conditional("DEVELOPMENT_BUILD"), System.Diagnostics.Conditional("UNITY_EDITOR")]
     public static void Debug (string message) 
         => _logger.Debug(message);
     
