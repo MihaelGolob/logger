@@ -24,19 +24,20 @@ namespace Serilog.Sinks.Unity3D {
             using var writer = new StringWriter();
             
             _formatter.Format(logEvent, writer);
+            var message = writer.ToString().Trim();
 
             switch (logEvent.Level) {
                 case LogEventLevel.Verbose:
                 case LogEventLevel.Debug:
                 case LogEventLevel.Information:
-                    Debug.Log("<color=white>" + writer.ToString().Trim() + "</color>");
+                    Debug.Log("<color=white>" + message + "</color>");
                     break;
                 case LogEventLevel.Warning:
-                    Debug.LogWarning("<color=orange>" + writer.ToString().Trim() + "</color>");
+                    Debug.LogWarning("<color=orange>" + message + "</color>");
                     break;
                 case LogEventLevel.Error:
                 case LogEventLevel.Fatal:
-                    Debug.LogError("<color=red><b>" + writer.ToString().Trim() + "</b></color>");
+                    Debug.LogError("<color=red><b>" + message + "</b></color>");
                     break;
                 default: throw new ArgumentOutOfRangeException($"Log level {logEvent.Level} is not supported");
             }

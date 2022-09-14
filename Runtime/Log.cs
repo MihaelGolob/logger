@@ -6,6 +6,9 @@ using Serilog.Sinks.Unity3D;
 using UnityEngine;
 #endif
 
+/// <summary>
+/// A static class that provides the interface for logging. Must call Log.Initialize() before using. 
+/// </summary>
 public static class Log {
     // internal variables
     private static Serilog.ILogger _logger;
@@ -19,19 +22,26 @@ public static class Log {
     }
     
     // ------------------------------ P R I V A T E -------------------------------------
+    // This callback is called when an exception is thrown in any thread (including the main thread)
     private static void LogException(string log, string stackTrace, LogType type) {
         if (type != LogType.Exception) return;
-        _logger.Error(log);
-        _logger.Error(stackTrace);
+        // log the error so we can see it in the file afterwards
+        _logger.Error(log + "\n" + stackTrace);
     }
     
     // ------------------------------ P U B L I C    A P I ------------------------------
+    /// <summary>
+    /// Initialize the Logger and specify the outputs
+    /// </summary>
+    /// <param name="logToUnityConsole"></param>
+    /// <param name="logToFile"></param>
+    /// <param name="fileName"></param>
     public static void Init(bool logToUnityConsole = true, bool logToFile = true, string fileName = null) {
         // create logger configuration
         // enable debug messages with MinimumLevel
         var loggerConfiguration = new LoggerConfiguration().MinimumLevel.Verbose();
         
-        // add sinks
+        // add sinks depending on the parameters
         if (logToUnityConsole) {
             loggerConfiguration.WriteTo.Unity3D();
         }
@@ -47,6 +57,10 @@ public static class Log {
     }
     
     // Debug methods
+    /// <summary>
+    /// Log a debug message
+    /// </summary>
+    /// <param name="message"></param>
     [System.Diagnostics.Conditional("ENABLE_LOGS")]
     public static void Debug (string message) 
         => _logger.Debug(message);
@@ -105,6 +119,10 @@ public static class Log {
     
     
     // Warning methods
+    /// <summary>
+    /// Log a warning message.
+    /// </summary>
+    /// <param name="message"></param>
     [System.Diagnostics.Conditional("ENABLE_LOGS")]
     public static void Warning (string message) 
         => _logger.Warning(message);
@@ -162,6 +180,10 @@ public static class Log {
         => _logger.Warning(exception, message, value0, value1, value2, value3, value4, value5);
     
     // Error methods 
+    /// <summary>
+    /// Log an error message.
+    /// </summary>
+    /// <param name="message"></param>
     [System.Diagnostics.Conditional("ENABLE_LOGS")]
     public static void Error (string message) 
         => _logger.Error(message);
