@@ -11,7 +11,8 @@ namespace Serilog.Sinks.Unity3D {
     /// </summary>
     public sealed class Unity3dEventSink : ILogEventSink {
         private readonly ITextFormatter _formatter;
-        
+
+        // constructor
         public Unity3dEventSink(ITextFormatter formatter) => _formatter = formatter;
         
         /// <summary>
@@ -25,6 +26,8 @@ namespace Serilog.Sinks.Unity3D {
             
             _formatter.Format(logEvent, writer);
             var message = writer.ToString().Trim();
+            
+            // TODO: get reference to the object that is logging and pass it to he Debug.Log call (so Unity will highlight it when clicked)
 
             switch (logEvent.Level) {
                 case LogEventLevel.Verbose:

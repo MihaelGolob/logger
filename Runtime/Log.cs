@@ -12,10 +12,11 @@ using UnityEngine;
 public static class Log {
     // internal variables
     private static Serilog.ILogger _logger;
-    
+
     // public properties
-    
-    // static constructor
+    public static bool LogExceptions { get; set; } = true;
+
+// static constructor
     static Log() {
         // subscribe to events
         Application.logMessageReceivedThreaded += LogException;
@@ -24,7 +25,7 @@ public static class Log {
     // ------------------------------ P R I V A T E -------------------------------------
     // This callback is called when an exception is thrown in any thread (including the main thread)
     private static void LogException(string log, string stackTrace, LogType type) {
-        if (type != LogType.Exception) return;
+        if (type != LogType.Exception || !LogExceptions) return;
         // log the error so we can see it in the file afterwards
         _logger.Error(log + "\n" + stackTrace);
     }
