@@ -14,7 +14,7 @@ namespace Serilog.Sinks.Unity3D {
 
         // constructor
         public Unity3dEventSink(ITextFormatter formatter) => _formatter = formatter;
-        
+
         /// <summary>
         /// write the log to Unity3D console with appropriate log level.
         /// </summary>
@@ -22,25 +22,22 @@ namespace Serilog.Sinks.Unity3D {
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public void Emit(LogEvent logEvent) {
             // destroy writer after use
+            // this is to insure that the method is thread safe
             using var writer = new StringWriter();
-            
             _formatter.Format(logEvent, writer);
-            var message = writer.ToString().Trim();
             
-            // TODO: get reference to the object that is logging and pass it to he Debug.Log call (so Unity will highlight it when clicked)
-
             switch (logEvent.Level) {
                 case LogEventLevel.Verbose:
                 case LogEventLevel.Debug:
                 case LogEventLevel.Information:
-                    Debug.Log("<color=white>" + message + "</color>");
+                    Debug.Log("<color=white>" + writer + "</color>");
                     break;
                 case LogEventLevel.Warning:
-                    Debug.LogWarning("<color=orange>" + message + "</color>");
+                    Debug.LogWarning("<color=orange>" + writer + "</color>");
                     break;
                 case LogEventLevel.Error:
                 case LogEventLevel.Fatal:
-                    Debug.LogError("<color=red><b>" + message + "</b></color>");
+                    Debug.LogError("<color=red><b>" + writer + "</b></color>");
                     break;
                 default: throw new ArgumentOutOfRangeException($"Log level {logEvent.Level} is not supported");
             }
