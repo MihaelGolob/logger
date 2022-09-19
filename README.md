@@ -8,7 +8,6 @@ a file before the application crashes.
 1. Add the package to your project
 2. To enable logs you need to globally define the `LOGS_ENABLED` symbol. This can be done either
 by including it in every script where you need logs or by going to `Unity->Edit->Project Settings->Player->Other Settings->Scripting Define Symbols`
-3. Init the logger by calling `LogSystem.Init()` in your `Start()` method and specify the log outputs you want to use.
 4. Start logging messages.
 
 *Created by Mihael Golob,
