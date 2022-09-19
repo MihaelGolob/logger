@@ -1,14 +1,13 @@
 using System;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using System.Threading;
 using Serilog;
 using Serilog.Core;
-using Serilog.Sinks.Unity3D;
+using Serilog.Unity3D;
 using UnityEngine;
 
 /// <summary>
-/// A static class that provides the interface for logging. Must call Log.Initialize() before using. 
+/// A static class that provides the interface for logging. 
 /// </summary>
 public static class Log {
     // internal variables
@@ -130,6 +129,8 @@ public static class Log {
     /// Log a warning message.
     /// </summary>
     /// <param name="message"></param>
+    /// <param name="callerMemberName"></param>
+    /// <param name="callerLineNumber"></param>
     [Conditional("ENABLE_LOGS")]
     [MessageTemplateFormatMethod("message")]
     public static void Warning(string message, [CallerMemberName] string callerMemberName = null, [CallerLineNumber] int callerLineNumber = 0)
@@ -155,6 +156,8 @@ public static class Log {
     /// Log an error message.
     /// </summary>
     /// <param name="message"></param>
+    /// <param name="callerMemberName"></param>
+    /// <param name="callerLineNumber"></param>
     [Conditional("ENABLE_LOGS")]
     [MessageTemplateFormatMethod("message")]
     public static void Error (string message, [CallerMemberName] string callerMemberName = null, [CallerLineNumber] int callerLineNumber = 0) 

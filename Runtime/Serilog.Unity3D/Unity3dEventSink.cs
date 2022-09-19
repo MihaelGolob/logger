@@ -5,7 +5,7 @@ using Serilog.Events;
 using Serilog.Formatting;
 using UnityEngine;
 
-namespace Serilog.Sinks.Unity3D {
+namespace Serilog.Unity3D {
     /// <summary>
     /// This class is used to provide a link between Serilog and Unity3D console output.
     /// </summary>

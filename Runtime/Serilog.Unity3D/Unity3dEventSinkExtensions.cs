@@ -1,10 +1,9 @@
 using System;
 using Serilog.Configuration;
-using Serilog.Events;
 using Serilog.Formatting;
 using Serilog.Formatting.Display;
 
-namespace Serilog.Sinks.Unity3D {
+namespace Serilog.Unity3D {
     /// <summary>
     /// provides extension methods for LoggerConfiguration for creating a logger.
     /// </summary>
@@ -20,7 +19,7 @@ namespace Serilog.Sinks.Unity3D {
             if (configuration == null)
                 throw new ArgumentException(nameof(configuration));
             
-            var formatter = new MessageTemplateTextFormatter(outputTemplate, null);
+            var formatter = new MessageTemplateTextFormatter(outputTemplate);
             return configuration.Unity3D(formatter);
         }
         
@@ -31,13 +30,13 @@ namespace Serilog.Sinks.Unity3D {
         /// <param name="formatter"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
-        public static LoggerConfiguration Unity3D(this LoggerSinkConfiguration configuration, ITextFormatter formatter) {
+        private static LoggerConfiguration Unity3D(this LoggerSinkConfiguration configuration, ITextFormatter formatter) {
             if (configuration == null)
                 throw new ArgumentException(nameof(configuration));
             if (formatter == null)
                 throw new ArgumentException(nameof(formatter));
 
-            return configuration.Sink(new Unity3dEventSink(formatter), LevelAlias.Minimum, null);
+            return configuration.Sink(new Unity3dEventSink(formatter), levelSwitch: null);
         }
     }
 }
