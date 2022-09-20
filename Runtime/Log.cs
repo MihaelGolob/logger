@@ -32,6 +32,7 @@ public static class Log {
     private static void LogException(string log, string stackTrace, LogType type) {
         if (type != LogType.Exception || !LogExceptions) return;
         // log the error so we can see it in the file afterwards
+        // TODO: log exceptions to file only
         _logger.Fatal(log + "\n" + stackTrace);
     }
 
