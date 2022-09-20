@@ -41,7 +41,7 @@ public static class Log {
     private static void Init() {
         const string unityTemplate = "[frame:{frameCount}  {callerTypeName}:{callerMemberName} ({callerLineNumber})]  {Message:lj}";
         const string fileTemplate = "[{Level:u3}:{Timestamp:HH:mm:ss}] [frame:{frameCount}  {callerTypeName}:{callerMemberName} ({callerLineNumber})]  {Message:lj} {NewLine}";
-        var fileName = $"{DateTime.Now:dd.MM.yyyy}_{DateTime.Now:HH.mm.ss}.log";
+        var fileName = $"/{DateTime.Now:dd.MM.yyyy}_{DateTime.Now:HH.mm.ss}.log";
 
         // create logger configuration
         // enable debug messages with MinimumLevel
