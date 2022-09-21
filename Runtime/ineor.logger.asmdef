@@ -1,9 +1,7 @@
 {
     "name": "ineor.logger",
     "rootNamespace": "",
-    "references": [
-        "GUID:b26c46a15127147bc9f7e2f56f2f7ad9"
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
