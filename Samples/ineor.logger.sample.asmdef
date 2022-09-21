@@ -1,8 +1,8 @@
 {
-    "name": "ineor.logger",
+    "name": "ineor.logger.sample",
     "rootNamespace": "",
     "references": [
-        "GUID:b26c46a15127147bc9f7e2f56f2f7ad9"
+        "GUID:f7e53206d6a82427798fd8c1ed2d0b5d"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

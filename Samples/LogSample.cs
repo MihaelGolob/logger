@@ -1,7 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Ineor.Utils.Logger;
 
 /// <summary>
 /// A sample class to demonstrate how to use Ineor Log System (Attach this script to a GameObject in your scene)
@@ -22,6 +21,8 @@ public class LogSample : MonoBehaviour {
         Log.Debug("x = {0}, y = {1}, z = {2}", x, y, z);
         // alternatively, you can use:
         Log.Debug($"x = {x}, y = {y}, z = {z}");
+        
+        Log.Warning($"All log files are stored in: {Application.persistentDataPath}");
         
         // Log system automatically logs exceptions too:
         throw new Exception("test exception");
