@@ -1,4 +1,4 @@
-# Ineor Log System package
+# Log System package
 
 This is a Log system package based on the Serilog library. It currently supports logging to 
 the Unity Console and to a file on the system. It can automatically log exceptions/crashes to
